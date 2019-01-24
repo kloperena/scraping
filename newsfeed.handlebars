@@ -1,0 +1,53 @@
+<div id='newsSection'>
+    <ul id='navbar' class="nav">
+        <li class="nav-item">
+            <a id='btns' class="nav-link active" href="./newsfeed.handlebars">Newsfeed</a>
+        </li>
+        <li class="nav-item">
+            <a id='btns' class="nav-link" href="./savedArticles.handlebars">Saved Articles</a>
+        </li>
+    </ul>
+
+        {{!-- //how i wanted it to look- on top you can select articles you saved or articles you that will be scaped ( which is this page, it's a way to go back to it)
+        // it should print the title/summary/author/plus the img given
+        // below that it'll have the option to go to thearticle 
+        // there would be a button which would allow you to save the article
+        //there would also bethe comment section --}}
+
+        
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <div id='jumbo' class="jumbotron">
+                    <h1>Scraped News Articles from BuzzFeed</h1>
+                </div>
+            </div>
+        </div>
+
+        {{#each article}}
+        <div id="news_each">
+            <h3 id='title'>{{ title }}</h3>
+            <p id='summary'>{{summary}}</p>
+            <p id='author'>Written by: {{author}}</p>
+            <img id="imgLink">{{imgLink }}</img>
+            
+
+            <button id='linkBtn' class="btn btn-dark">
+                <a id='btns' href={{link}} target='_blank'> GO TO ARTICLE </a>
+            </button>
+
+            <form id='saveForm' action="/saved/{{this._id}}" method='post'>
+            <input ID='saveBtn' class='btn btn-dark' type="submit" value='SAVE ARTICLE'>
+            </form>
+
+            <form id='inputform' action='/note/{{this._id}}' method='post'>
+                Comment:
+                <input id='txtinput' type="text" name='noteText'/>
+                <input id='sbtinput' type='submit' value='submit'/>
+            </form>
+            
+        
+        </div>
+        {{/each}}
+    </div>
+    </div>
